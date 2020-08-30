@@ -94,11 +94,7 @@ function createInfo(id) {
   });
 }
 
-// change event
-function optionChanged(id) {
-  createPlot(id);
-  createInfo(id);
-}
+
 
 //  initial data rendering
 function init() {
@@ -121,3 +117,9 @@ function init() {
 }
 
 init();
+
+// update graphes when id is changed
+function optionChanged(id) {
+  createPlot(id);
+  createInfo(id);
+}
