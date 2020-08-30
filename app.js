@@ -2,8 +2,9 @@
 function createPlot(id) {
   // getting data from the json file
   d3.json("data/samples.json").then((data)=> {
-    
-    //console.log(data)
+    // wfreq for gauge chart
+    var wfreq = data.metadata.map(d => d.wfreq)
+
 
       // filter sample values by id 
       var samples = data.samples.filter(samples => samples.id.toString() === id)[0];
@@ -68,8 +69,37 @@ function createPlot(id) {
       // create the bubble plot
       Plotly.newPlot("bubble", data2, layoutBubble); 
       
+    
+      //create gauge chart
+      
+      var data3 = [
+        {
+        domain: { x: [0, 1], y: [0, 1] },
+        value: parseFloat(wfreq),
+        title: { text: `Belly Button Washing Frequency ` },
+        type: "indicator",
+        mode: "gauge+number",
+        gauge: { axis: { range: [null, 9] },
+                 steps: [
+                  { range: [0, 2], color: "yellow" },
+                  { range: [2, 4], color: "lime" },
+                  { range: [4, 6], color: "sage" },
+                  { range: [6, 8], color: "green" },
+                  { range: [8, 9], color: "pin" },
+                ]}
+            
+        }
+      ];
+      var layoutGauge = { 
+          width: 600, 
+          height: 500, 
+          margin: { t: 25, r: 25, l: 25, b: 25 },
+        };
+      Plotly.newPlot("gauge", data3, layoutGauge);
     });
   }   
+
+  
 // demographic info
 function createInfo(id) {
   // getting data from json file
