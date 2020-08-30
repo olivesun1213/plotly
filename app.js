@@ -1,5 +1,5 @@
 // data plotting (bar & bubble)
-function getPlot(id) {
+function createPlot(id) {
   // getting data from the json file
   d3.json("data/samples.json").then((data)=> {
     
@@ -71,7 +71,7 @@ function getPlot(id) {
     });
   }   
 // demographic info
-function getInfo(id) {
+function createInfo(id) {
   // getting data from json file
   d3.json("data/samples.json").then((data)=> {
       
@@ -96,8 +96,8 @@ function getInfo(id) {
 
 // change event
 function optionChanged(id) {
-  getPlot(id);
-  getInfo(id);
+  createPlot(id);
+  createInfo(id);
 }
 
 //  initial data rendering
@@ -115,8 +115,8 @@ function init() {
       });
 
       // call the functions to display the data and the plots to the page
-      getPlot(data.names[0]);
-      getInfo(data.names[0]);
+      createPlot(data.names[0]);
+      createInfo(data.names[0]);
   });
 }
 
